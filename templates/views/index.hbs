@@ -1,0 +1,23 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://kit.fontawesome.com/9047a2f51e.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./icon.png">
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Weather app</title>
+  </head>
+  <body>
+    {{>header}}
+    <form class="form">
+      <input type="text" class="input" placeholder="Location">
+      <button class="btn">Search <i class="fas fa-search"></i></button>
+    </form>
+    <p class='location'></p>
+    <p class='weather-result'></p>
+
+    {{>footer}}
+  </body>
+  <script src="./js/app.js"></script>  
+</html>
