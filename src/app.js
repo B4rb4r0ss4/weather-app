@@ -50,23 +50,21 @@ app.get('/weather', (req, res) => {
       error: 'You must provide an adrress',
     });
   }
+  let address = req.query.address;
+  if (address.toLowerCase() === 'warszawa') address = 'warsaw';
+  geocode(address, (error, { location, latitude, longtitude } = {}) => {
+    if (error) return res.send({ error: error });
 
-  geocode(
-    req.query.address,
-    (error, { location, latitude, longtitude } = {}) => {
-      if (error) return res.send({ error: error });
+    weather(latitude, longtitude, (error, forecastData) => {
+      if (error) return console.log(error);
 
-      weather(latitude, longtitude, (error, forecastData) => {
-        if (error) return console.log(error);
-
-        res.send({
-          forecast: forecastData,
-          location: location,
-          address: req.query.address,
-        });
+      res.send({
+        forecast: forecastData,
+        location: location,
+        address: req.query.address,
       });
-    }
-  );
+    });
+  });
 });
 
 app.get('*', (req, res) => {
